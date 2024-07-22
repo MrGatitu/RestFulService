@@ -2,7 +2,6 @@ package com.example.RESTfulService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
@@ -19,15 +18,11 @@ public class UserList {
     }
 
     public List<User> getUsers() {
-        return users;
+        return new ArrayList<>(users);
     }
 
     public void addUser(User user) {
         users.add(user);
-    }
-
-    public Optional<User> getUserById(int id) {
-        return users.stream().filter(user -> user.getId() == id).findFirst();
     }
 
     /*public static void main(String[] args) {
