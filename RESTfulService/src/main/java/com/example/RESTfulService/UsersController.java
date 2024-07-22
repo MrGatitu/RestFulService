@@ -22,7 +22,7 @@ public class UsersController {
         this.userList = userList;
     }
 
-    @GetMapping(produces = "application/json")
+    @GetMapping(path ="/all",produces = "application/json")
     public List<User> getUsers() {
         return userList.getUsers();
     }
