@@ -9,9 +9,7 @@ import org.springframework.stereotype.Repository;
 public class UserList {
 
     private static List<User> users = new ArrayList<>();
-
     User user;
-
     static {
 
         users.add(new User(1, "Vivian", "123@example.com"));
@@ -23,26 +21,27 @@ public class UserList {
         return new ArrayList<>(users);
     }
 
-    public static void _getMethod(int _id){
-        users.get(_id);
-
-        System.out.println(users.get(_id));
-        
+    public  String _getMethod(int _index){
+        if (_index >= 0 && _index < users.size()){
+            return users.get(_index).toString();
+        } else{
+            throw new IndexOutOfBoundsException(users.size());
+        }
     }
 
     public void addUser(User user) {
         this.user = user;
 
-        if (user == null){
+        if (user != null){
             users.add(user);
         }        
     }
 
     public static void main(String[] args) {
-        UserList _getUser;
+        UserList _getUser = new UserList();
 
         try {
-            System.out.println(_getMethod(0));
+            System.out.println(_getUser._getMethod(1));
             //addUser(4,"Ian", "123@email.com");
         } catch (Exception e) {
             System.out.println("Error");

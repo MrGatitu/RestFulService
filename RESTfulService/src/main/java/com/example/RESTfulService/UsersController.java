@@ -29,8 +29,8 @@ public class UsersController {
     }
 
     @GetMapping(path ="/{id}", produces = "application/json")
-    public List<User> _getUser(@PathVariable int id){
-        return userList.getUsers();
+    public void _getUser(@PathVariable int id){
+         userList._getMethod(id).toString();
     }
     @PostMapping("/addUser")
     public ResponseEntity<Object> adduserEntity(@RequestBody User user){
