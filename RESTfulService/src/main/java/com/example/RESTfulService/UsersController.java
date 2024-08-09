@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UsersController {
     
     private final UserList userList;
@@ -23,16 +23,26 @@ public class UsersController {
         this.userList = userList;
     }
 
-    @GetMapping(path ="/all",produces = "application/json")
+    @GetMapping("/all")
     public List<User> getUsers() {
         return userList.getUsers();
     }
 
-    @GetMapping(path ="/{id}", produces = "application/json")
-    public void _getUser(@PathVariable int id){
-         userList._getMethod(id).toString();
+    @GetMapping("/{id}")
+    public ResponseEntity<String> _getUser(@PathVariable ("id") int id) {
+        try {
+            String specificUser = userList._getMethod(id);
+            return new ResponseEntity<>(specificUser, HttpStatus.OK);
+        } catch (IndexOutOfBoundsException e) {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        }
     }
-    @PostMapping("/addUser")
+    
+//     @GetMapping("/hello")
+//     ResponseEntity<String> hello() {
+//     return ResponseEntity.ok("Hello World!");
+// }
+    @PostMapping("/add")
     public ResponseEntity<Object> adduserEntity(@RequestBody User user){
         userList.addUser(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);

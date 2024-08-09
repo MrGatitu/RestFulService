@@ -21,9 +21,9 @@ public class UserList {
         return new ArrayList<>(users);
     }
 
-    public  String _getMethod(int _index){
-        if (_index >= 0 && _index < users.size()){
-            return users.get(_index).toString();
+    public  String _getMethod(int id){
+        if (id >= 0 && id < users.size()){
+            return users.get(id).toString();
         } else{
             throw new IndexOutOfBoundsException(users.size());
         }
