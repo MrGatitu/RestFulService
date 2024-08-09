@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UsersController {
     
     private final UserList userList;
@@ -29,7 +29,7 @@ public class UsersController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<String> _getUser(@PathVariable int id) {
+    public ResponseEntity<String> _getUser(@PathVariable ("id") int id) {
         try {
             String specificUser = userList._getMethod(id);
             return new ResponseEntity<>(specificUser, HttpStatus.OK);
